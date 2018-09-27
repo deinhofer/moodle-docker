@@ -10,7 +10,7 @@ $CFG->dbhost    = 'db';
 $CFG->dbname    = getenv('MOODLE_DOCKER_DBNAME');
 $CFG->dbuser    = getenv('MOODLE_DOCKER_DBUSER');
 $CFG->dbpass    = getenv('MOODLE_DOCKER_DBPASS');
-$CFG->prefix    = 'm_';
+$CFG->prefix    = getenv('MOODLE_DOCKER_DBPREFIX');
 $CFG->dboptions = ['dbcollation' => getenv('MOODLE_DOCKER_DBCOLLATION')];
 
 $host = 'localhost';
