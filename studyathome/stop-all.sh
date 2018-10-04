@@ -1,11 +1,25 @@
 #!/bin/bash
 
-export MOODLE_DOCKER_WWWROOT="$(pwd)/../moodle"
-export MOODLE_DOCKER_DB="pgsql"
-export MOODLE_DOCKER_DBPREFIX="UniA_m_"
-export MOODLE_DOCKER_DB_VOLUME="$(pwd)/studyathome/db-volume"
-export MOODLE_DOCKER_DATAROOT="$(pwd)/studyathome/UniA/moodledata"
+#first source environment
+. studyathome/.studyathome-env
 
+#Stop all containers
+export MOODLE_PREFIX="${MOODLE_PREFIX_UNI_STUDYATHOME_HUB}"
+export MOODLE_DOCKER_WEB_PORT="${MOODLE_DOCKER_WEB_PORT_UNI_STUDYATHOME_HUB}"
+export COMPOSE_PROJECT_NAME="${MOODLE_PREFIX}"
+bin/moodle-docker-compose down
 
-# Start up containers
+export MOODLE_PREFIX="${MOODLE_PREFIX_UNI_A}"
+export MOODLE_DOCKER_WEB_PORT="${MOODLE_DOCKER_WEB_PORT_UNI_A}"
+export COMPOSE_PROJECT_NAME="${MOODLE_PREFIX}"
+bin/moodle-docker-compose down
+
+export MOODLE_PREFIX="${MOODLE_PREFIX_UNI_B}"
+export MOODLE_DOCKER_WEB_PORT="${MOODLE_DOCKER_WEB_PORT_UNI_B}"
+export COMPOSE_PROJECT_NAME="${MOODLE_PREFIX}"
+bin/moodle-docker-compose down
+
+export MOODLE_PREFIX="${MOODLE_PREFIX_UNI_C}"
+export MOODLE_DOCKER_WEB_PORT="${MOODLE_DOCKER_WEB_PORT_UNI_C}"
+export COMPOSE_PROJECT_NAME="${MOODLE_PREFIX}"
 bin/moodle-docker-compose down

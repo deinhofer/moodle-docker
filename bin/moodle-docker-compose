@@ -45,24 +45,24 @@ if [ -f $filename ]; then
 fi
 
 # Selenium browser
-if [[ ! -z "$MOODLE_DOCKER_BROWSER" ]] && [[ "$MOODLE_DOCKER_BROWSER" != "firefox" ]];
-then
-    dockercompose="${dockercompose} -f ${basedir}/selenium.${MOODLE_DOCKER_BROWSER}.yml"
-fi
+#if [[ ! -z "$MOODLE_DOCKER_BROWSER" ]] && [[ "$MOODLE_DOCKER_BROWSER" != "firefox" ]];
+#then
+#    dockercompose="${dockercompose} -f ${basedir}/selenium.${MOODLE_DOCKER_BROWSER}.yml"
+#fi
 
-if [[ -z "$MOODLE_DOCKER_SELENIUM_VNC_PORT" ]]
-then
-    export MOODLE_DOCKER_SELENIUM_SUFFIX=""
-else
-    export MOODLE_DOCKER_SELENIUM_SUFFIX="-debug"
-    dockercompose="${dockercompose} -f ${basedir}/selenium.debug.yml"
-fi
+#if [[ -z "$MOODLE_DOCKER_SELENIUM_VNC_PORT" ]]
+#then
+#    export MOODLE_DOCKER_SELENIUM_SUFFIX=""
+#else
+#    export MOODLE_DOCKER_SELENIUM_SUFFIX="-debug"
+#    dockercompose="${dockercompose} -f ${basedir}/selenium.debug.yml"
+#fi
 
 # External services
-if [[ ! -z "$MOODLE_DOCKER_PHPUNIT_EXTERNAL_SERVICES" ]];
-then
-    dockercompose="${dockercompose} -f ${basedir}/phpunit-external-services.yml"
-fi
+#if [[ ! -z "$MOODLE_DOCKER_PHPUNIT_EXTERNAL_SERVICES" ]];
+#then
+#    dockercompose="${dockercompose} -f ${basedir}/phpunit-external-services.yml"
+#fi
 
 # Webserver host
 export MOODLE_DOCKER_WEB_HOST=${MOODLE_DOCKER_WEB_HOST:-localhost}
@@ -81,5 +81,5 @@ if [[ "$(uname)" == "Darwin" ]]; then
     dockercompose="${dockercompose} -f ${basedir}/volumes-cached.yml"
 fi
 
-
+# Start base dependencies (db, mail,...)
 $dockercompose $@

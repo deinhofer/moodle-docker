@@ -1,0 +1,18 @@
+# Define environment for studyathome demo
+
+export STUDYATHOME_BASEDIR="/home/mad/studyathome"
+export MOODLE_PREFIX_UNI_STUDYATHOME_HUB="studyathomehub"
+export MOODLE_PREFIX_UNI_A="unia"
+export MOODLE_PREFIX_UNI_B="unib"
+export MOODLE_PREFIX_UNI_C="unic"
+
+export MOODLE_DOCKER_WEB_PORT_UNI_STUDYATHOME_HUB="8000"
+export MOODLE_DOCKER_WEB_PORT_UNI_A="8001"
+export MOODLE_DOCKER_WEB_PORT_UNI_B="8002"
+export MOODLE_DOCKER_WEB_PORT_UNI_C="8003"
+
+
+
+export MOODLE_DOCKER_WWWROOT="$(pwd)/../moodle"
+export MOODLE_DOCKER_DB="pgsql"
+export MOODLE_DOCKER_DBPREFIX="m_"

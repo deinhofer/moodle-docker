@@ -3,9 +3,9 @@ services:
   webserver:
     image: "moodlehq/moodle-php-apache:${MOODLE_DOCKER_PHP_VERSION}"
     depends_on:
-      - db
+    - db
     volumes:
-      - "${MOODLE_DOCKER_DATAROOT}:/var/www/moodledata"
+      - "${STUDYATHOME_BASEDIR}/${MOODLE_PREFIX}/moodledata:/var/www/moodledata"
       - "${MOODLE_DOCKER_WWWROOT}:/var/www/html"
       - "${ASSETDIR}/web/apache2_faildumps.conf:/etc/apache2/conf-enabled/apache2_faildumps.conf"
     environment:
@@ -13,9 +13,9 @@ services:
       MOODLE_DOCKER_DBNAME: moodle
       MOODLE_DOCKER_DBUSER: moodle
       MOODLE_DOCKER_DBPASS: "m@0dl3ing"
-      MOODLE_DOCKER_DBPREFIX: "${MOODLE_DOCKER_DBPREFIX}"
       MOODLE_DOCKER_BROWSER: firefox
       MOODLE_DOCKER_WEB_HOST: "${MOODLE_DOCKER_WEB_HOST}"
+      MOODLE_DOCKER_DBPREFIX: "${MOODLE_DOCKER_DBPREFIX}"
   db:
     image: postgres:9.6.7
     environment:
@@ -23,10 +23,4 @@ services:
       POSTGRES_PASSWORD: "m@0dl3ing"
       POSTGRES_DB: moodle
     volumes:
-      - ${MOODLE_DOCKER_DB_VOLUME}:/var/lib/postgresql/data
-  exttests:
-    image: moodlehq/moodle-exttests
-  selenium:
-    image: "selenium/standalone-firefox${MOODLE_DOCKER_SELENIUM_SUFFIX}:2.53.1"
-    volumes:
-      - "${MOODLE_DOCKER_WWWROOT}:/var/www/html:ro"
+      - ${STUDYATHOME_BASEDIR}/${MOODLE_PREFIX}/db-volume:/var/lib/postgresql/data
