@@ -17,3 +17,5 @@ services:
       MYSQL_USER: moodle
       MYSQL_PASSWORD: "m@0dl3ing"
       MYSQL_DATABASE: moodle
+    volumes:
+      - ${STUDYATHOME_BASEDIR}/${MOODLE_PREFIX}/db-volume:/var/lib/mysql
